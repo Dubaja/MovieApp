@@ -18,6 +18,15 @@ Template.movieForm.events = {
         };
  
         // add the movie to the db
-        Movies.insert(newMovie);
+        Meteor.call(
+            "addMovie",
+            newMovie,
+            function (err, result) {
+                if (err) {
+                    alert("Could not add movie " + err.reason);
+                }
+            }
+       );
+ 
     }
 };
